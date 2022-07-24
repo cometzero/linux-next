@@ -207,6 +207,19 @@
 				      "dout_clkcmu_peric1_ip";
 		};
 
+		cmu_fsys0: clock-controller@17700000 {
+			compatible = "samsung,exynosautov9-cmu-fsys0";
+			reg = <0x17700000 0x8000>;
+			#clock-cells = <1>;
+
+			clocks = <&xtcxo>,
+				 <&cmu_top DOUT_CLKCMU_FSYS0_BUS>,
+				 <&cmu_top DOUT_CLKCMU_FSYS0_PCIE>;
+			clock-names = "oscclk",
+				      "dout_clkcmu_fsys0_bus",
+				      "dout_clkcmu_fsys0_pcie";
+		};
+
 		cmu_fsys2: clock-controller@17c00000 {
 			compatible = "samsung,exynosautov9-cmu-fsys2";
 			reg = <0x17c00000 0x8000>;
