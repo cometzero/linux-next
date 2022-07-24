@@ -1307,6 +1307,53 @@ static const struct samsung_cmu_info fsys0_cmu_info __initconst = {
 	.clk_name		= "dout_clkcmu_fsys0_bus",
 };
 
+/* ---- CMU_FSYS1 ---------------------------------------------------------- */
+
+/* Register Offset definitions for CMU_FSYS1 (0x17040000) */
+#define PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER	0x0600
+
+static const unsigned long fsys1_clk_regs[] __initconst = {
+	PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER,
+};
+
+/* List of parent clocks for Muxes in CMU_FSYS1 */
+PNAME(mout_fsys1_bus_user_p) = { "oscclk", "dout_clkcmu_fsys1_bus" };
+
+static const struct samsung_mux_clock fsys1_mux_clks[] __initconst = {
+	MUX(CLK_MOUT_FSYS1_BUS_USER, "mout_fsys1_bus_user",
+	    mout_fsys1_bus_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER, 4, 1),
+};
+
+static const struct samsung_gate_clock fsys2_gate_clks[] __initconst = {
+	GATE(CLK_GOUT_FSYS2_UFS_EMBD0_ACLK, "gout_fsys2_ufs_embd0_aclk",
+	     "mout_fsys2_ufs_embd_user",
+	     CLK_CON_GAT_GOUT_BLK_FSYS2_UID_UFS_EMBD0_IPCLKPORT_I_ACLK, 21,
+	     0, 0),
+	GATE(CLK_GOUT_FSYS2_UFS_EMBD0_UNIPRO, "gout_fsys2_ufs_embd0_unipro",
+	     "mout_fsys2_ufs_embd_user",
+	     CLK_CON_GAT_GOUT_BLK_FSYS2_UID_UFS_EMBD0_IPCLKPORT_I_CLK_UNIPRO,
+	     21, 0, 0),
+	GATE(CLK_GOUT_FSYS2_UFS_EMBD1_ACLK, "gout_fsys2_ufs_embd1_aclk",
+	     "mout_fsys2_ufs_embd_user",
+	     CLK_CON_GAT_GOUT_BLK_FSYS2_UID_UFS_EMBD1_IPCLKPORT_I_ACLK, 21,
+	     0, 0),
+	GATE(CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO, "gout_fsys2_ufs_embd1_unipro",
+	     "mout_fsys2_ufs_embd_user",
+	     CLK_CON_GAT_GOUT_BLK_FSYS2_UID_UFS_EMBD1_IPCLKPORT_I_CLK_UNIPRO,
+	     21, 0, 0),
+};
+
+static const struct samsung_cmu_info fsys2_cmu_info __initconst = {
+	.mux_clks		= fsys2_mux_clks,
+	.nr_mux_clks		= ARRAY_SIZE(fsys2_mux_clks),
+	.gate_clks		= fsys2_gate_clks,
+	.nr_gate_clks		= ARRAY_SIZE(fsys2_gate_clks),
+	.nr_clk_ids		= FSYS2_NR_CLK,
+	.clk_regs		= fsys2_clk_regs,
+	.nr_clk_regs		= ARRAY_SIZE(fsys2_clk_regs),
+	.clk_name		= "dout_clkcmu_fsys2_bus",
+};
+
 /* ---- CMU_FSYS2 ---------------------------------------------------------- */
 
 /* Register Offset definitions for CMU_FSYS2 (0x17c00000) */

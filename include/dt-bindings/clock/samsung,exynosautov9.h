@@ -228,6 +228,11 @@
 
 #define FSYS0_NR_CLK			37
 
+/* CMU_FSYS1 */
+#define CLK_MOUT_FSYS1_BUS_USER		1
+
+#define FSYS1_NR_CLK			8
+
 /* CMU_FSYS2 */
 #define CLK_MOUT_FSYS2_BUS_USER		1
 #define CLK_MOUT_FSYS2_UFS_EMBD_USER	2
